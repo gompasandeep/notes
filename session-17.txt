@@ -14,7 +14,13 @@ vars:
     COURSE: "DevOps with AWS"
     DURATION: 120HRS
     TRAINER: Sivakumar
-	
+
+1. Play level variables
+2. task level variables
+3. variables from files
+4. variables from prompt
+5. variables inside inventory.. group inventory and host variables
+6. variables from command_line/ args
 
 "{{COURSE}}"
 
