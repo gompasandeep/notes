@@ -1,0 +1,64 @@
+Ansible Roles
+==================
+code reuse
+
+DRY --> Don't repeat yourself
+
+A standard structure of writing playbooks that contains tasks, variables, dependencies, files, templates, libraries. We can reuse roles.
+
+roles/role-name
+
+tasks --> You can keep all your tasks here, ansible automatically loads them
+	main.yaml 
+vars --> variables required for this role
+	main.yaml
+templates --> you can keep variables in the file, ansible replace the value at runtime.
+	any file
+files --> We can keep files in this folder
+	any file names
+Handlers --> notifiers when some change event is happened
+defaults/         #
+	main.yml      #  <-- default lower priority variables for this role
+meta  --> dependencies of this role
+	main.yaml
+library/          # roles can also include custom modules
+	
+	
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+fatal: [backend.daws82s.online]: FAILED! => {"changed": false, "msg": "Could not find or access 'backend.service'\nSearched in:\n\t/home/ec2-user/expense-ansible-roles/roles/backend/files/backend.service\n\t/home/ec2-user/expense-ansible-roles/roles/backend/backend.service\n\t/home/ec2-user/expense-ansible-roles/roles/backend/tasks/files/backend.service\n\t/home/ec2-user/expense-ansible-roles/roles/backend/tasks/backend.service\n\t/home/ec2-user/expense-ansible-roles/files/backend.service\n\t/home/ec2-user/expense-ansible-roles/backend.service on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+
+
+ansible handlers are notifiers. when some change event happened in one task, we can trigger other tasks through handlers
+
+3 components -> Mysql, backend and frontend
+12 microservice
+
+deployment
+===========
+there will be one folder where code exist
+stop the server
+remove old code
+download new code
+restart the server
+
+1. remove directory
+2. re create directory
+3. download code
+
+main.yaml
+name
+hosts
+become
+roles:
+- frontend
+
+roles/frontend
+tasks
+	main.yaml --> install and service
+	
+	
+How do you controll tasks in ansible.. few tasks should run, few tasks should not run...
+
+ansible tags
+
+100 covers white --> more, reliance, dmart
