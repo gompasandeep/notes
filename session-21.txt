@@ -1,0 +1,21 @@
+CRUD
+
+SDK --> Software development kit
+API --> Application programming interface
+
+AWS --> Open libraries(Java, Python, NodeJs, C++) --> You can CRUD on your AWS
+
+3 servers --> mysql, backend, frontend
+r53 --> 3 records private ip, 1 record public ip
+
+aws configure
+
+ansible vault
+================
+ansible-vault create <file-name>.yaml
+
+create servers
+
+de commissiong ansible vault and replace with secret manager or paramter store
+
+code and configuration --> de coupling
