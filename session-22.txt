@@ -1,0 +1,11 @@
+Ansible Dynamic inventory
+==========================
+inventory --> a list of hosts and groups, this is static
+
+Dynamic --> when traffic increases, servers should be increased, when traffic decrased servers should be terminated
+
+dynamic inventory
+=================
+ansible can connect to dynamic environments like cloud aws, azure, gcp, etc. It has to query the servers based on the parameters we give
+
+ssh-keygen -t rsa
