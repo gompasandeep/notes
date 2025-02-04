@@ -1,0 +1,116 @@
+reusability
+maintainability
+standards
+consistent infra across organisation
+
+VPC
+=====
+Virtual private cloud. A isolated project space where we can create services for a project. We wil have full control and access on this
+
+on-premise data centers
+physical space
+physical security
+networking
+power
+firewalls
+linux admins
+n/w admins
+storage backups
+
+We need proper society space to construct house. 
+
+village --> name, pincode
+street --> name, street number
+house --> C/O name, house number. Main gate
+
+VPC --> Virtual private cloud
+subnets
+igw --> to provide internet connection
+databases --> no outside person should have access to DB
+frontend application --> public, anyone internet can open
+routes
+HA --> High availability
+region --> min 2AZ(data center)
+
+IP Address --> 2^32
+0.0.0.0
+.
+.
+.
+.
+255.255.255.255 --> each octate 8 bits
+
+192.145.34.56
+
+500082 --> It represents one entire village
+
+CIDR --> Classless inter domain routing
+
+10.0.0.0/16 -> first 2 octates are blocked for network bits. 
+
+10.0.0.0
+10.0.0.1
+10.0.0.2
+10.0.0.3
+..
+.
+.
+10.0.0.255
+10.0.1.0
+10.0.1.1
+.
+.
+.
+10.0.1.255
+
+256*256 -> 65,536
+
+subnet --> CIDR --> 10.0.0.0/24 --> 24 bits or 3 octates blocked. 256 IP addresses are possible
+1a --> 10.0.0.0/24 --> 256 IP addresses
+1b --> 10.0.1.0/24 --> 256 IP addresses
+
+10.0.1.0
+10.0.1.1
+10.0.1.2
+.
+.
+.
+10.0.1.255
+
+10.0.22.145 --> database 1b
+
+NAT --> if you want to enable egress internet to the servers in private subnet, you should create NAT gateway in public subnet and provide route to private subnets
+if traffic coming to server --> ingress
+if server is sending traffic to internet --> egress
+
+
+static(elastic) IP --> 1000
+
+VPC --> 10.0.0.0/16
+IGW --> Attach to VPC
+Public subnets --> 10.0.1.0/24 10.0.2.0/24
+Public Subnets --> Public Route --> 0.0.0.0/0 --> IGW
+
+Private Subnets --> 10.0.11.0/24 10.0.12.0/24
+Private Subnets --> Private Route --> 0.0.0.0/0 --> NAT
+
+Database Subnets --> 10.0.21.0/24 10.0.22.0/24
+Database Subnets --> Database Route --> 0.0.0.0/0 --> NAT
+
+for humans - or _
+for programs _
+
+joindevops --> expense, roboshop
+
+project-name-environment
+
+Project = expense
+Environment = dev
+Terraform = true
+Name = expense-dev
+
+40.25.35.98 --> Home N/W --> Google N/W
+
+IP = N/W + Host ID
+
+dnf install mysql-server --> my EC2 is requesting internet to provide mysql-server
