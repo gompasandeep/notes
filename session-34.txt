@@ -1,0 +1,8 @@
+expense-dev.czn6yzxlcsiv.us-east-1.rds.amazonaws.com
+root
+ExpenseApp1
+3306
+mysql-dev.daws82s.online
+
+A --> IP Address
+CNAME

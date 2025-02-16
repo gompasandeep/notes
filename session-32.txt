@@ -1,0 +1,47 @@
+target group --> team --> group of servers
+
+ALB --> Listener --> Evaluate rules --> target group --> server
+
+open source modules
+====================
+1. we noo need to write code
+
+disadvantages
+==============
+1. we are dependent on them
+2. whenever they update something we are forced to update
+
+Organisation modules
+====================
+1. they have to write complete code
+
+advantages
+===========
+fully our control
+
+1. Project infra
+2. Application infra
+
+basement --> one time
+rooms --> frequent
+
+stateful vs stateless
+=====================
+state --> data
+
+database --> stateful
+backend, frontend --> stateless
+
+bastion host --> app ALB
+ALB SG Rule
+port no: 80 --> bastion host IP
+
+daws82s.online
+
+backend.app-dev.daws82s.online
+*.app-dev.daws82s.online --> expense dev app alb
+
+user, cart, catalogue, shipping, payment
+
+user.app-dev.daws82s.online --> user component
+cart.app-dev.daws82s.online --> cart component

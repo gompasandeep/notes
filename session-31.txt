@@ -1,0 +1,71 @@
+VPC --> VPC_ID, subnet_ids
+SG -> refer VPC params and update sg ids in store
+
+["subnet-76dghye567vf","subnet-76dghye567vf"] --> terraform(List)
+
+subnet-76dghye567vf,subnet-76dghye567vf --> AWS(StringList), Terraform(String)
+
+private, datasubnet --> no public IP
+
+NAT --> only outgoing traffic
+
+Bastion/jump host --> one EC2 in public subnet. from this host to private hosts
+
+ssh ec2-user@private-ip
+DevOps321
+
+
+Clients --> Delivery Manager
+
+frontend --> frontend team
+backend --> backend team
+DB --> db team
+devops and cloud --> devops team
+
+HR -> recruit more members --> JD
+
+Load Balancer --> DM
+Listener --> listening to client
+HTTP --> 80
+HTTPS --> 443
+rules
+======
+if frontend --> frontend team
+
+if frontend --> frontend target group
+
+target group --> frontend team
+health check --> which instances are in running condition
+
+group of ec2 instances --> frontend target group
+
+http://daws81s.online --> IP port no 80
+https://daws81s.online --> IP port no 443
+
+Autoscaling
+--------------
+launch template --> JD
+autoscaling policy --> avg cpu utilisation --> 70%
+
+http://10.2.3.5/
+
+1ec2 --> 1a
+1ec2 --> 1b
+
+lb --> 1a/1b, 1c
+
+user, cart, catalogue, shipping, payment --> backend components
+
+
+user.daws82s.online  --> user target group
+cart.daws82s.online --> cart target group
+
+LB DNS --> 
+
+http://nginx-616438873.us-east-1.elb.amazonaws.com/
+
+Listener --> 80
+Rule --> all traffic send to nginx target group
+round robin --> ec2 instance
+
+LB, Listener, Rule, Target group, Instance

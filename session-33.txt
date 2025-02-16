@@ -1,0 +1,36 @@
+VPN --> forward proxy
+
+OpenVPN Access Server Community Image-fe8020db
+openvpnas --> SSH username
+openvpn, Openvpn@123 --> client credentials
+
+DB
+====
+on-premise
+
+DB installation
+DB upgrades
+DB backups
+DB changes
+DB Cluster setup
+DB restoration test
+
+RDS --> 1$/hours, multi-AZ(HA) 2$/hr
+====
+DB installation --> we just need to provide configuration
+DB upgrades --> simple clicks
+DB snaphosts
+DB Cluster --> We can replication controllers, high available, storage scalable
+
+ExpenseApp1
+
+DB subnet group --> group of DB subnets
+
+8.0.10 -> 8.0.11
+8.0 -> 9.0
+8.4.0 --> 8.5.0 --> major
+
+DB_HOST_URL: expense-dev.czn6yzxlcsiv.us-east-1.rds.amazonaws.com
+root
+ExpenseApp1
+3306
