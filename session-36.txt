@@ -1,0 +1,43 @@
+API
+GET POST PUT DELETE OPTIONS
+
+Nouns and verbs
+
+users --> nouns
+getUser --> verb
+updateUser --> verb
+deleteUser --> verb
+createUser --> verb
+
+https://emacet.ap.gov.in/rank/user/10987625 --> getUser rank HTTP GET
+https://emacet.ap.gov.in/rank/user/10987625 --> HTTP DELETE --> user rank will be deleted
+https://emacet.ap.gov.in/rank/user/10987625 --> HTTP UPDATE --> user rank will be updated
+https://emacet.ap.gov.in/rank/user/10987625 --> HTTP POST, User ranks will be created in database
+
+https://emacet.ap.gov.in/rank/users/ --> HTTP GET, hall ticket numbers will be uploaded in CSV
+
+AMI --> run instances, auto scaling
+
+backend.app-dev.daws82s.online --> backend target group
+
+analytics.app-dev.daws82s.online --> analytics target group
+
+http://backend.app-dev.daws82s.online/transaction --> route53
+
+*.app-dev.daws82s.online --> ALB
+
+Listener --> http:80
+
+Listener should check its rules
+backend.app-dev.daws82s.online --> backend target group
+Load balancer get the healthy instances
+Load balancer send traffic to any healthy instance
+
+http://backend.appp-dev.daws82s.online/transaction
+
+AMI is mandatory
+target group
+launch template --> AMI, SG, Network settings
+ASG --> launch template, target group
+ASG policy --> CPU utilisation cross 70% create new instances. Min, max, desired
+Listener rule --> if some one hits backend. --> backend target group
