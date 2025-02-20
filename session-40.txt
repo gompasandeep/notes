@@ -1,0 +1,82 @@
+What happens if I enter google.com in my browser?
+
+Application
+Presentation
+Session layer
+Transport
+Network
+Data link
+Physical
+
+application
+=============
+application google.com --> http/https
+presentation --> encryption
+session --> session, cookie details
+
+transport --> port number
+destination port --? 80/443/8080 22
+source port --> system randomly allocates one port to get the response --> ephemeral port
+32768-> 65535
+
+Network --> IP address
+destination IP address --> DNS resolution
+source IP --> server IP address (private IP)
+source IP, source port, destination IP, destination port, data --> packet
+
+Datalink --> Mac address
+source mac --> laptop mac address
+destination mac --> router mac address
+frame --> data packet and mac address
+
+Physical --> ethernet, wifi
+
+Modem
+============
+Physical --> 
+Datalink --> frames. source mac, destination mac addresses will be removed --> I should send this out
+Network --> checks the packet . destination IP address in not with in the network. NAT(Network address translation)
+source IP address will be changed to router IP(public) address
+Transport --> port number accessed
+
+response will come back to laptop and ephemeral port
+
+NACL --> Network access control list
+====================================
+Public subnet --> web ALB 443 from 0.0.0.0/0
+frontend ec2 --> SG checks traffic comes from ALB or not
+SG checks IP and port --> layer 4
+
+SG --> fingerprint door lock to home
+NACL --> subnet, like check infront of apartment
+
+NACL vs SG
+===============
+1. SG can be attached to EC2, NACL can be attached to subnet
+2. SG rules are empty when you create, there are no deny in SG. when you create NACL by default all traffic will be denied.
+3. SG is stateful, NACL is stateless
+
+443, expense-dev.daws82s.online
+0.0.0.0/0, ephemeral port
+
+public --> ALB --> 443. we should allow
+return traffic on ephemeral ports should be allowed
+
+public subnet frontend instance --> private subnet ALB
+destination ip: private subnet CIDR
+destination port: 80
+source ports of the clients are always ephemeral
+
+frontend is client, server is private ALB
+		
+10.0.0.0/16 --> local
+
+either VPN or bastion host only access DB
+
+Network security
+application security
+database security
+
+public subnet --> private subnet
+80 allow from frontend private IP address only
+80 allow from VPN, bastion IP address only
