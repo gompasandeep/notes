@@ -9,11 +9,13 @@ FROM <BASE-OS>:<version>
 
 how to build docker image?
 
-docker build -t <image-name>:<version> .
+docker build -t <image-name>:<version> . --> Dockerfile
 
 docker build -t <docker-hub-username>/<image-name>:<version> .
 
-docker login
+docker login -u <username>
+
+docker push <image-name>:<version>
 
 RUN
 ======
