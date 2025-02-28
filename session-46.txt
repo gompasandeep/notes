@@ -1,0 +1,30 @@
+volumes
+==========
+docker containers ephemeral, once you remove container by default it removes the data too.
+
+you can create one directory in host and map it to container. even we delete container data will not be lost, you can remount it..
+
+we created directory, so we have to manage it...
+
+docker volumes --> you have to create volumes with docker commands, so docker can manage, we no need to worry of creation and managing
+
+manually running containers
+===========================
+1. we need to know the dependency
+2. we need to make sure network creation and volume creation
+3. while removing we need to remove in anti dependency order..
+4. manually run docker run commands
+
+docker-compose.yaml
+
+mysql
+backend --> trying to connect mysql, before it is completely up, so we need to delay few sec
+
+SG vs NACL --> 
+secrets stored in SSM parameter store
+developed terraform modules --> 
+ansible roles
+I optimised dockerfiles
+
+latest
+1.0.0 --> 1.0.1 --> 1.0.2 --> 1.1.0 --> 2.0.0
