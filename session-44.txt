@@ -1,0 +1,19 @@
+CMD vs ENTRYPOINT
+==================
+1. CMD instruction can be overriden
+2. You can't override ENTRYPOINT --> ping google.com ping facebook.com. If you try to override entrypoint it will not override, but it will append
+3. for best results we can use CMD and ENTRYPOINT together.
+4. We can mention command in ENTRYPOINT, default options/inputs can be supplied through CMD. User can always override default options.
+5. Only one CMD and one ENTRYPOINT should be used in Dockerfile
+
+USER -> set the user of container
+WORKDIR --> set the working directory of container/image
+
+ARG
+------
+1. ENV variables can be access at the image building and in container also
+2. ARG variables are only accessed inside image build, not in container
+3. ARG can be the first instruction only to provide the version for base image. It can't be useful after FROM instruction
+
+set the ARG value to ENV variable inside Dockerfile
+

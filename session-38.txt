@@ -1,0 +1,19 @@
+Organisation wide AWS Central team
+golden AMI
+terraform apply -auto-approve
+
+app_alb_frontend
+80
+
+frontend_web_alb on port no 80
+
+expense-dev.daws82s.online
+expense-qa.daws82s.online
+daws82s.online
+
+Cloudfront --> Caching
+
+Netflix --> Squid game
+
+1st user --> checks cache --> brings from origin servers --> save to cache --> send to user
+2nd user --> checks cache --> send to user

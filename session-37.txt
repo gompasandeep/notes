@@ -1,0 +1,82 @@
+Load Balancing --> High Availability
+Scaling --> Autoscaling
+
+DM, He listens to client, his manager, etc.
+DM --> Load balancer
+client --> port no 80 http
+Rules
+	*.app-dev.daws82s.online --> LB
+	fdhasdkfh.app-dev.daws82s.online --> Yes Iam LB (default fixed response)
+	http://backend.app-dev.daws82s.online --> forward that to backend target group
+	http://analytics.app-dev.daws82s.online --> forward that to analytics target group
+	health check
+		every 10sec
+		2 health success --> instance is healthy
+		2 health failure --> instance is failed
+		
+Autoscaling
+==============
+Terraform+Shell+Ansible+Autoscaling
+
+HR --> JD --> Which team?
+JD --> Launch template
+AMI --> updated latest version backend AMI
+
+install program runtime, create user, create app folder, download code, install dependencies, create sytemctl services, configure DB_URLS, restart application
+
+terraform --> Instance launch --> copy file using provisioner --> connected to instance through remote-exec --> run playbook
+
+stop the instance
+take AMI
+delete the instance
+
+create backend target group
+create launch template --> latest AMI ID, update launch template version
+ASG --> launch template latest version, instance refresh
+	rolling update
+	new instance create, old instance delete
+
+listener rule --> backend.app-dev.daws82s.online --> forward that to backend target group
+ASG Policy --> if AVG CPU Utilisation is crossing 70% create instances
+Scale out --> create new instances
+Scale in --> remove instances
+
+if instance id changes
+trigger provisoner
+stop instance
+take AMI
+
+launch template changes
+ASG instance refresh
+
+either host or context
+
+amazon.daws82s.online --> amazon
+daws82s.online/amazon --> path based or context based
+
+m.facebook.com --> mobile target group
+netbanking.icicibank.com
+corporatebanking.icicibank.com
+
+joindevops --> golden AMI
+
+backend
+	ansible+nodejs --> joindevops AMI + Ansible + nodejs
+shipping
+	ansible+java --> joindevops AMI + Ansible + java
+
+SSL/TLS certificates
+-----------------------
+daws82s.online --> get certificates
+
+certificate authority --> verisign, letsencrypt
+
+.crt file --> domain, country, type of business, location, address, company name
+private key
+
+joindevops.com --> verisign
+browser sends data to servers using encrypted key, joindevops has private key so it can decrypt
+
+*.daws82s.online 
+
+frontend-dev.daws82s.online

@@ -1,0 +1,22 @@
+FROM --> should be the first instruction to represent base OS
+RUN --> Used to configure or install packages
+CMD --> executes at the time of container creation, this command should container running infinite time
+COPY --> copies from local workspace to image
+ADD --> same as copy but 2 extra capabilities, directly downloads from internet or untar directly
+LABEL --> adds metadata, used for filter. key value pairs
+EXPOSE --> doc purpose, tell the users about ports opened by container
+ENV --> sets the env variables in the container, we can use at build time also
+ENTRYPOINT --> cant' override, CMD can provide default args, we can always override default args
+USER --> set the user to run container
+WORKDIR --> sets the working directory for container/image
+ARG --> build time variables, in an exceptional case can be first instruction to supply base os version
+
+ONBUILD
+=======
+we can set some conditions when some user is using our image
+
+nginx --> alamlinux:9, install nginx, removes index.html
+
+we will force the users to keep index.html in their workspace for mandatory
+
+if you are using default n/w docker containers can't communicate with each other

@@ -1,0 +1,50 @@
+ASG
+Target group --> deregistration delay
+
+terraform destroy --> ASG
+tg waits until deregistration happens --> 5min
+
+CDN --> AWS cache network
+AWS have edge servers across the globe, before serving content to the users, aws cache the content in edge servers so that latency will be very less. useful in serving images, videos, static js, css files
+
+GET PUT POST DELETE
+
+Origin --> where the real content exist
+Cache behaviours
+
+/images/* --> this should be cached
+/videos/* --> this should be cached
+/static/* --> this should be cached
+* --> this should not be cached
+
+How can you delete all the cached content in edge servers?
+invalidations
+
+Origin S3, ALB, EC2, etc.
+
+*.daws82s.online
+expense-dev --> public ALB
+expense-cdn --> CDN
+
+NACL --> 
+
+https://facebook.com
+
+ephemeral ports
+
+github.com --> 443
+0-65535
+1025-65,535
+1025 --> system ports
+laptop opens an ephemeral port, 54353
+
+VPC, subnets, route tables, SG
+NACL
+
+SG --> stateful
+
+ec2 server --> allow port no 22 on ssh inbound, outbound can be empty
+
+NACL --> stateless
+
+ec2 server --> allow port no 22 on ssh inbound, outbound also should be there

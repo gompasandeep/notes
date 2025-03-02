@@ -1,0 +1,93 @@
+acquiring state lock --> state file locked when one user is working on terraform
+releasing state lock
+
+terraform force-unlock <lock-id>
+
+terraform taint
+================
+if you apply taint to a resource in terraform, it will recreated again.. why we taint? if someone change the resource manually in console and it is difficult to reset..
+
+terraform target
+================
+terraform apply -target=<resource>
+
+ec2 and sg
+
+can I delete only SG?
+
+we need to be careful because resources may have dependencies, they maybe effected
+
+IaaC --> automated infra
+manually infra --> terraform
+
+terraform import
+===================
+create provider, initailise it
+create empty resource
+import the resource
+terraform will fetch all the paramters and keep it in statefile
+we need to manually fill the code untill terraform not complaining when you plan..
+
+manually expense infra --> automated infra
+
+https://daws82s.online
+
+automated infra
+
+https://daws82s-migrated.online --> public ALB --> frontend TG --> private ALB -> backend TG --> RDS
+
+https://daws82s.online --> newly created public ALB
+
+
+how can you secure statefile in s3 bucket?
+=============================================
+remote s3 with dynamodb
+s3 bucket -> least privelege --> only ec2 instance will have write access to s3 bucket
+
+terraform ec2 instance --> write access and update access
+no body will have delete access in s3 bucket
+you can enable MFA delete to team lead/architect
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::315069654700:role/TerraformAWSAdminForEC21"
+            },
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": "arn:aws:s3:::testing-bucket-security-remote/*"
+        },
+        {
+            "Effect": "Deny",
+            "Principal": {
+                "AWS": "arn:aws:iam::315069654700:user/sivakumar"
+            },
+            "Action": "s3:DeleteObject",
+            "Resource": "arn:aws:s3:::testing-bucket-security-remote/*",
+            "Condition": {
+                "Bool": {
+                    "aws:MultiFactorAuthPresent": "false"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::315069654700:user/sivakumar"
+            },
+            "Action": [
+                "s3:ListBucket",
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::testing-bucket-security-remote",
+                "arn:aws:s3:::testing-bucket-security-remote/*"
+            ]
+        }
+    ]
+}
