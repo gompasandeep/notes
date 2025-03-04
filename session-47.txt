@@ -1,0 +1,78 @@
+create Dockerfile
+build image
+push to docker hub
+docker-compose.yaml
+	image: joindevops/mysql:1.0.0
+	
+Image layers
+=============
+
+
+FROM node:20.18.3-alpine3.21
+RUN addgroup -S expense && adduser -S expense -G expense
+RUN mkdir /opt/backend
+RUN chown -R expense:expense /opt/backend
+WORKDIR /opt/backend
+COPY package.json .
+
+Docker maintains the images as layers, each and every instruction is one layer. docker creates
+1. intermediate container from instruction-1
+2. docker runs 2nd instruction on top of IC-1. then docker saves this another layer
+3. docker saves this container as another image layer. create intermediate container out of it IC-2
+4. Now docker runs 3rd instruction in IC-2 container. docker saves this as another layer
+5. docker creates intermediate container from this layer as IC-3
+
+How do you optimise docker layers?
+==================================
+1. less number of layers faster builds, because number of intermediate containers are less
+you can club multiple instructions into single instruction
+2. keep the frequently changing instructions at the bottom of Dockerfile
+
+Multi stage builds
+===================
+Java
+JDK --> Java development kit
+JRE --> Java runtime environment
+
+JDK > JRE
+JRE is subset of JDK
+
+JDK = JRE + Extra libraries
+
+while installing some libraries, OS adds extra space to HD. We will take only that jar file output and copy it another Dockerfile where only jre runs...
+
+We can have 2 dockerfiles one is for builder, we can copy the output from builder into 2nd dockerfile and run it, we can save some image space using this
+
+
+#FROM node:20
+FROM node:20.18.3-alpine3.21 AS builder
+RUN addgroup -S expense && adduser -S expense -G expense && \
+    mkdir /opt/backend && \
+    chown -R expense:expense /opt/backend
+WORKDIR /opt/backend
+ENV DB_HOST="mysql"
+USER expense
+COPY package.json ./
+COPY *.js ./
+RUN npm install
+CMD ["node", "index.js"]
+
+Docker multistage builds are primarily used to create smaller, more optimized container images by separating the build environment from the runtime environment. We can have one as builder and one as runner, copy the desired output from builder to runner. docker removes builder automatically
+
+1. build the image --> use docker
+2. run the image as container --> use kubernetes
+
+pg have 100 rooms, what if water is stopped...
+
+if owner have say 5pg, 
+
+what is underlying docker server is crashed. We need to maintain multiple docker hosts. You need some orchestrator to manage all the docker hosts... docker swarm is docker native orchestrator
+
+kubernetes is the popular container orchestrator tool..
+
+autoscaling of containers --> 
+HA --> run containers in multiple servers
+reliability --> orchestrator shifts the container to another host if one host is down
+kubernetes n/w and DNS is more stronger than docker swarm
+kubernetes integrates with cloud providers
+storage is better than in dockerswarm
