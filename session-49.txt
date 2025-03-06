@@ -1,0 +1,19 @@
+backend --> DB connection --> once results are fetched connection close
+
+you should not mix the configuration with code/defintion
+
+siva --> saiavaaa
+siva --> fddsfh9u05471490
+
+Service
+=========
+1. load balancing
+2. pod to pod communication
+3. as DNS between pods
+
+multi-container --> curl nginx --> 
+1. cluster IP --> default, only works internally
+2. NodePort --> external requests
+3. LoadBalancer --> only works with cloud providers. here service open classic LB. 
+
+LoadBalancer > NodePort > ClusterIP
