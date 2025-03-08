@@ -1,0 +1,24 @@
+namespace --> isolated project space
+Pod
+
+LoadBalancer > NodePort > ClusterIP
+
+Pod is subset of replicaset
+pod name = replicaset-name-random 5 digits
+
+deployment
+============
+when there are changes in application, we need to release new version
+delete old application
+download new application
+run the application
+
+replicaset is subset of deployment
+
+kubectl rollout undo deployment/nginx-deployment --> roll back to immidiate previous version
+
+sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
+sudo ln -s /opt/kubectx/kubectx /usr/local/bin/kubectx
+sudo ln -s /opt/kubectx/kubens /usr/local/bin/kubens
+
+0-1024 are system ports
