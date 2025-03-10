@@ -1,0 +1,46 @@
+Volumes
+============
+everything in k8 is ephemeral. pods, nodes, master node all are ephemeral. So it is not good to store DB inside K8
+
+Storage administration --> manage all the disks related to servers
+Backup every day
+Restore testing
+N/w to storage
+
+EBS -> Elastic block storage
+EFS -> Elastic file system
+
+If server is in AZ us-east-1b, EBS also should be here. EBS is less latency. EBS is well suitable for DB and OS
+
+1. node and EBS volume should be in same AZ
+2. drivers install
+3. EC2 worker nodes should have permission to work with EBS volumes
+
+static and dynamic provisioning
+=================================
+
+
+EBS static
+==========
+we have to create disk manually. vol-06237d8b3183eefc9
+drivers install
+kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.40"
+
+everything in k8 is resource/object. if you can treat or manage the volumes from k8 objects any k8 engineer can work on this..
+PV --> Persistant volume, represents or wrapper of physical volume
+PVC --> Claiming the volume
+Storage class
+
+kid --> mother --> father --> wallet
+Pod	-->  PVC --> PV -->  volume
+
+access modes
+============
+ReadWriteOnce, ReadOnlyMany, ReadWriteMany, or ReadWriteOncePod,
+
+Lifecycle policies
+=================
+
+if pod schedules in 1a and volume is in 1b, pod status will be in pending for continously.
+
+scheduler --> schedules your pods on to appropriate nodes
