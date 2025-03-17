@@ -1,0 +1,76 @@
+perm storage
+=============
+1. SAN
+2. K8 Admin
+3. Expense DevOps Engineer --> they get access to only expense namespace
+
+Expense DevOps engineer send a mail to SAN with the manager approval. SAN will take their manager approval and create storage for us.
+
+We will forward disk details to k8 admin and ask them to create PV.
+
+1. namespace level
+2. cluster level
+
+they create PV and send the name for us..
+
+then we will create PVC, pod to access the storage
+
+Kid --> Mom --> Dad --> Wallet
+Pod --> PVC --> PV  --> Storage
+
+1. install drivers
+2. give permissions to worker nodes
+3. create volume
+4. create PV, PVC and cliam through pod
+5. EC2 and EBS should be in same az incase of EBS provisioning
+
+kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.40"
+
+
+EBS dynamic
+============
+
+Kid --> Mom --> UPI
+Pod --> PVC --> SC
+
+StorageClass --> this object is responsible dynamic provisioning. it will create external storage and PV automatically
+
+1. install drivers
+2. give permissions to worker nodes
+3. create storage class
+
+EFS --> Elastic file sharing
+
+1. EBS should be in same AZ as in EC2, EFS can be anywhere in n/w
+2. EBS is speed compare to EFS
+3. EBS is used OS disk and databases, EFS can be used for file storages
+4. EBS size is fixed. EFS will be scaled automatically
+5. EFS is based on NFS protocol. 2049 port
+6. EBS and EFS should be mounted to any instance.
+7. You can have any filesystem attached to EBS, but EFS use NFS, we can't change.
+
+EFS static
+=============
+1. install drivers
+kubectl apply -k \
+    "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-2.1"
+2. give permissions
+3. create EFS
+4. open port no 2049 on EFS to allow traffic from EC2 worker nodes
+5. create PV, PVC and POD
+
+
+EFS Dynamic
+=============
+1. create storage class
+2. install drivers
+3. give permissions
+
+StatefulSet vs Deployment
+==============
+1. Deployment is for stateless applications, generally frontend and backend
+2. StatefulSet is for stateful applications usually databases.
+3. StatefulSet will have headless service, deployment will not have headless service
+4. PV, PVC are mandatory for statefulset
+5. pods in statefulset create in orderly manner with static names. statefulset-0, statefulset-1
+

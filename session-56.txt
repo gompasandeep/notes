@@ -1,0 +1,59 @@
+R53 --> ALB --> Listener --> Rule --> Target Group(VM)/Target Group(Pod)
+
+
+eksctl utils associate-iam-oidc-provider \
+    --region <region-code> \
+    --cluster <your-cluster-name> \
+    --approve
+	
+daws82s.online
+
+app1.daws82s.online --> app1 related pods
+app2.daws82s.online --> app2 related pods
+
+Ingress resource
+=================
+Ingress Controller is used to provide external access to the applications running in kubernetes. We can set the routing rules through ingress resource either path based or host based. in EKS ingress resource can create ALB, Listener, Rule and target group. Ingress is attached to service, so it fetch the pods and add them to target group
+
+RBAC --> Role based access control
+======
+Authentication and Authorization
+
+Nouns and Verbs
+
+Nouns --> what are the resources we have
+Verbs --> What actions you can take on those resources
+
+IAM
+Nouns --> EC2, VPC, R53, CDN, EKS, IoT, etc.
+
+Fresher --> deleteEC2 --> no
+CRUD
+Fresher --> readEC2
+Junior --> createEC2
+Senior --> creaEC2, readEC2, updateEC2
+Team lead --> deleteEC2
+
+User, Role, Rolebinding
+
+expense-trainee --> read access to expense namespace
+
+role should be bound to user --> through rolebinding
+
+EKS is one platform, AWS is another platform
+
+k8 has its own RBAC, AWS has its own
+
+AWS integrates IAM service as authentication mechanism to EKS
+
+a user should describe EKS to connect it..
+
+1. create IAM user and provide describeEKSCluster access
+2. we need to create role and rolebinding resources
+
+aws-auth configmap need to be configured to connect EKS and IAM
+
+mail suresh about his config is done, he can login
+AKIAUSW45M2WKJH4AVVH
+
+aws eks update-kubeconfig --region us-east-1 --name expense

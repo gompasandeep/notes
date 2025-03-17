@@ -1,0 +1,70 @@
+Selectors
+==============
+Scheduler --> it will decide where to run your pod
+
+nodeSelector:
+	az: 1a
+	
+taints and tolerations
+affinity and anti-affinity
+
+
+Errors in K8
+==============
+ErrImagePull --> if node is not able to pull the image
+CrashLoopBackOff --> Container is unable to start
+Pending --> worker node not availalbe in that AZ, PVC is not bound to PV
+ContainerCreating --> PV, PVC
+
+taint --> paint or pollute
+
+if can taint the node, scheduler will not schedule any pods on to that node
+
+17.182 --> 1b
+43.212 --> 1a and tainted
+51.139 --> 1a
+NoSchedule --> order
+PreferNoSchedule --> request
+NoExecute --> already few pods, 
+
+toleration --> allow
+
+a dedicated worker nodes are there project savings bank project, it means any other project related pods will not be scheduled here
+
+tolerations will not 100% gaurentee thats pods will run on the tainted nodes..
+
+situation
+==========
+node is tainted --> can scheduler run the pod on that node? --> no
+node is tainted --> pod asks for toleration --> can scheduler run the pod --> may be(if resources are not free or scheduler decided another node) --> Running
+node is tainted --> pod asks for toleration and nodeSelector --> If tainted have resources(Running) --> if tainted nodes don't have any resources(Pending)
+
+requiredDuringSchedulingIgnoredDuringExecution --> Schedule the pod and execute --> hard rules, labels must be availalbe while scheduling
+preferredDuringSchedulingIgnoredDuringExecution --> Soft rule --> if labels are not availalbe then consider schedule on the node..
+
+backend --> DB --> every day bringing provisions from market
+
+backend --> Cache --> DB --> Cache -> 10 days rice store
+
+backend --> node-1
+Cache --> node-2
+
+traffic should come out from node-1 and enter into node-2 and then Cache pod
+
+pod-1 --> 17.182
+pod-2 --> 
+
+Ingress Controller
+===================
+Classic --> Old generation
+ALB --> New generation --> host based routing
+
+netbanking.hdfcbank.com --> netbanking target groups
+sms.hdfcbank.com --> sms banking target group
+
+url path hdfcbank.com/netbanking --> netbanking
+
+by using ingress controller, we can expose application running in K8 to outside world.
+
+setup ingress controller
+use ingress resources --> routing rules

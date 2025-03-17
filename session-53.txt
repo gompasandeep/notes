@@ -1,0 +1,34 @@
+Deployment
+==========
+when you hit nslookup on service name, you will get ClusterIP as address
+
+You need to attach headless service to statefulset. Why?
+
+what is headless service? headless service will have no ClusterIP. It will be attached to statefulset
+
+pods in statefulset will be created in orderly manner. 
+deployment pods names are choosen as random. but statefulset names are unique. <statefulset-name>-0, <statefulset-name>-1
+
+why statefulset have same names, pods preserve their identity?
+nginx-0 delete, statefulset creates immidiately another pod nginx-0 and it should attach to its own storage through naming convention. persistentvolumeclaim/www-nginx-0
+
+Deployment vs Statefulset
+============================
+1. Deployment is for stateless applications like frontend, backend, etc. Statefulset is for DB related applications like MySQL, ELK, Prometheus, Queue apps, etc.
+2. Statefulset requires headless service and normal service to be attached. Deployment will not have stateless service
+3. PV and PVC are mandatory to statefulset, they create individual storages for each pod. PV and PVC for deployment creates single storage
+4. Statefulset pods will be created in orderly manner. Deployment pods will be created parellely
+5. Deployment pods names are choosen random. Statefulset pods keep the same identity. like statefulset-name-0, -1, etc.
+
+Autoscaling
+=============
+Vertical, Horizontal
+
+Vertical scaling --> 2CPU, 4GB, 20GB HD --> 4CPU 8GB 100GB HD
+Horizontal scaling --> create another server with 2CPU, 4GB, 20GB HD and add to LB
+
+4 individual houses, 
+
+HPA in K8
+------------
+We should metrics server installed in k8

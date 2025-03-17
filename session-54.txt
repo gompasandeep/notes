@@ -1,0 +1,34 @@
+Namespace
+Pod
+ConfigMap
+Secret
+ReplicaSet
+Deployment
+Service
+PVC
+PV
+SC
+StatefulSet
+HPA
+
+Helm Charts
+=============
+1. image build
+2. run image
+
+there are opensource official images.
+opensource manifest files, image builders tell us how to run the images with default values, we can always override those default values too..
+
+dnf install nginx -y --> nginx will be installed
+
+1. helm is a package manager to deploy opensource applications or custom applications into kubernetes
+2. templatise manifest files
+
+helm install <chart-name> .
+
+/etc/yum.repos.d/
+dnf install nginx -y 
+
+helm install es-kb-quickstart elastic/eck-stack -n elastic-stack --create-namespace
+
+
