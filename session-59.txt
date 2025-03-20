@@ -1,0 +1,66 @@
+rolling update --> zero downtime
+	4 pods
+	5 pods, 4 old 1 new
+	1 old pod terminate, 2nd new pod
+	for few sec your app is serving both old and new version
+blue/green
+	app serves single at any point of time
+	easy rollback due to stand by
+
+	blue/green deployment is a zero downtime strategy
+	for example if blue is running, we will create a new set of infra called green
+	we do some health checks or sanity testing based on project requirement
+	if green infra passed testing, we will switch routing from blue to green
+	now green is running version and blue is standby version
+	after few days, if any major defects found out, we can easily switch over to old version i.e blue
+	this process goes on
+	
+1.0.0 --> blue
+2.0.0 --> green
+3.0.0 --> blue
+
+RDS is created,but we need to create schema, tables, user, etc...
+
+DNS works on port number 53. EKS DNS resoultion happens on udp 53.
+
+TCP vs UDP
+===========
+Transfer control protocol
+User datagram protocol
+
+COMP-1 --> COMP-2
+
+SYN --> SYN
+COMP-1    <-- SYN-ACK
+ACK RECEIVED --> COMP-2
+
+data transfer from COMP-1 to COMP-2
+
+DATA SENT --> DATA RECEIVED
+DATA RECEIVED ACK	<--
+
+Reliable protocol, no data loss
+
+UDP
+==========
+fire and forget
+
+COMP-1 --> COMP-2
+speed because no session ack overhead, no data ack, etc.
+
+DNS --> EKS UDP 53
+DNS retry 
+
+1st deployment --> blue
+main service --> blue
+	no rollback
+
+2nd deployment --> green
+run preview service
+edit main service
+if problem rollback
+
+
+R53 --> web alb
+
+R53 --> another ALB --> another TG
