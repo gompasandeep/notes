@@ -29,6 +29,16 @@ helm install <chart-name> .
 /etc/yum.repos.d/
 dnf install nginx -y 
 
+Helm
+Add the aws-ebs-csi-driver Helm repository:
+helm repo add aws-ebs-csi-driver https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+helm repo update
+
+Install the latest release of the driver:
+helm upgrade --install aws-ebs-csi-driver \
+    --namespace kube-system \
+    aws-ebs-csi-driver/aws-ebs-csi-driver
+
 helm install es-kb-quickstart elastic/eck-stack -n elastic-stack --create-namespace
 
 
